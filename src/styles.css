@@ -141,8 +141,20 @@ p {
 
 .logo {
     font-family: 'Playfair Display', serif;
-    font-size: 1.4rem;
-    letter-spacing: -0.02em;
+    font-size: 1.6rem;
+    font-weight: 500;
+    letter-spacing: -0.03em;
+    color: var(--white);
+    text-decoration: none;
+    background: linear-gradient(to right, #fff, rgba(255, 255, 255, 0.7));
+    -webkit-background-clip: text;
+    background-clip: text;
+    -webkit-text-fill-color: transparent;
+    transition: var(--transition);
+}
+
+.logo:hover {
+    opacity: 0.8;
 }
 
 .nav-links {

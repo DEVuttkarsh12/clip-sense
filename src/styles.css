@@ -238,30 +238,122 @@ p {
 .hero-container {
     position: relative;
     z-index: 2;
-    max-width: 850px;
+    max-width: 1000px;
 }
 
 .hero-content h1 {
-    font-size: 5rem;
-    margin-bottom: 40px;
+    font-size: 4.5rem;
+    margin-bottom: 30px;
     letter-spacing: -0.03em;
+    max-width: 900px;
+    margin-left: auto;
+    margin-right: auto;
 }
 
 .hero-content p {
-    font-size: 1.15rem;
-    max-width: 600px;
-    margin: 0 auto 60px;
+    font-size: 1.25rem;
+    max-width: 700px;
+    margin: 0 auto 50px;
+    opacity: 0.8;
 }
 
 .hero-btns {
-    margin-bottom: 60px;
+    margin-bottom: 30px;
 }
 
 .hero-subtext {
     font-size: 0.8rem;
-    opacity: 0.3;
+    opacity: 0.5;
     text-transform: uppercase;
     letter-spacing: 0.1em;
+    margin-bottom: 80px;
+}
+
+/* Hero Mockup */
+.hero-mockup {
+    width: 100%;
+    max-width: 850px;
+    margin: 0 auto;
+    background: rgba(255, 255, 255, 0.03);
+    border: 1px solid var(--border-subtle);
+    border-radius: 24px;
+    padding: 20px;
+    box-shadow: 0 40px 100px rgba(0, 0, 0, 0.5);
+    backdrop-filter: blur(10px);
+}
+
+.mock-search-bar {
+    background: rgba(255, 255, 255, 0.05);
+    border-radius: 12px;
+    padding: 16px 24px;
+    display: flex;
+    align-items: center;
+    gap: 15px;
+    margin-bottom: 20px;
+    text-align: left;
+}
+
+.search-icon {
+    font-size: 1.2rem;
+    opacity: 0.6;
+}
+
+.search-text {
+    font-size: 0.95rem;
+    color: var(--gray-text);
+    font-weight: 300;
+}
+
+.mock-video-frame {
+    aspect-ratio: 16/9;
+    background: linear-gradient(135deg, #051A14 0%, #010806 100%);
+    border-radius: 12px;
+    position: relative;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    overflow: hidden;
+}
+
+.mock-play-btn {
+    width: 60px;
+    height: 60px;
+    background: rgba(255, 255, 255, 0.1);
+    border-radius: 50%;
+    position: relative;
+    backdrop-filter: blur(5px);
+}
+
+.mock-play-btn::after {
+    content: '';
+    position: absolute;
+    top: 50%;
+    left: 55%;
+    transform: translate(-50%, -50%);
+    border-style: solid;
+    border-width: 10px 0 10px 18px;
+    border-color: transparent transparent transparent var(--white);
+}
+
+.mock-timestamp-bubbles {
+    position: absolute;
+    bottom: 20px;
+    left: 20px;
+    right: 20px;
+    height: 4px;
+    background: rgba(255, 255, 255, 0.1);
+    border-radius: 10px;
+}
+
+.bubble {
+    position: absolute;
+    top: -6px;
+    width: 16px;
+    height: 16px;
+    background: var(--pine-accent);
+    border: 3px solid #05261e;
+    border-radius: 50%;
+    box-shadow: 0 0 15px var(--pine-accent);
 }
 
 /* Problem Section Fixes */
@@ -413,7 +505,21 @@ p {
 
 .cta-box h2 {
     font-size: 4rem;
-    margin-bottom: 60px;
+    margin-bottom: 20px;
+}
+
+.cta-subtext {
+    font-size: 1.2rem;
+    color: var(--gray-text);
+    margin-bottom: 40px;
+}
+
+.cta-footer-text {
+    margin-top: 30px;
+    font-size: 0.8rem;
+    opacity: 0.4;
+    text-transform: uppercase;
+    letter-spacing: 0.1em;
 }
 
 /* Footer */
@@ -535,7 +641,17 @@ p {
     }
 
     .hero-content h1 {
-        font-size: 4.5rem;
+        font-size: 3.5rem;
+    }
+
+    .hero-mockup {
+        padding: 10px;
+        margin-bottom: 40px;
+    }
+
+    .mock-search-bar {
+        padding: 12px 16px;
+        font-size: 0.8rem;
     }
 
     .problem-header-alt h2 {

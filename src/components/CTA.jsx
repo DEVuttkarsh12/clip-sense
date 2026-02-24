@@ -7,8 +7,11 @@ const CTA = () => {
         <section className="section cta">
             <div className="container">
                 <div className="cta-box">
+                    <p className="eyebrow">Early Access</p>
                     <h2>Experience ClipSense Today.</h2>
-                    <button className="btn btn-primary" onClick={() => setIsPopupOpen(true)}>Join Beta</button>
+                    <p className="cta-subtext">Join 150+ creators finding moments instead of scrubbing for them.</p>
+                    <button className="btn btn-primary" onClick={() => setIsPopupOpen(true)}>Join Free Beta</button>
+                    <p className="cta-footer-text">Built by creators, for creators. Local first. Privacy foremost.</p>
                 </div>
             </div>
 

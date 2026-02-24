@@ -22,7 +22,7 @@ const Navbar = () => {
                 </ul>
                 <div className="nav-cta">
                     <a href="#" className="login-link">Log In</a>
-                    <button className="btn btn-primary">Sign Up</button>
+                    <button className="btn btn-primary">Join Free Beta</button>
                 </div>
             </div>
         </nav>

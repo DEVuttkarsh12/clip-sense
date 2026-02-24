@@ -1,6 +1,6 @@
 import React from 'react';
 
-const Hero = () => {
+const Hero = ({ onJoinBeta }) => {
     return (
         <section className="section hero">
             <div className="container hero-container">
@@ -10,7 +10,7 @@ const Hero = () => {
                         AI speech & visual search that works entirely in your browser. Privacy first, speed foremost.
                     </p>
                     <div className="hero-btns">
-                        <button className="btn btn-primary">Join Free Beta</button>
+                        <button className="btn btn-primary" onClick={onJoinBeta}>Join Free Beta</button>
                     </div>
                     <p className="hero-subtext">
                         Join 150+ creators getting early access

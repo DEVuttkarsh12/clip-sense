@@ -1,9 +1,11 @@
 import React from 'react';
+import HeroVisual from './HeroVisual';
 
 const Hero = ({ onJoinBeta }) => {
     return (
         <section className="hero">
-            <div className="container">
+            <HeroVisual />
+            <div className="container" style={{ position: 'relative', zIndex: 1 }}>
                 <div className="hero-content">
                     <div className="hero-badge">
                         <span className="badge-dot"></span>

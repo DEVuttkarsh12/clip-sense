@@ -4,14 +4,14 @@ const Footer = () => {
     return (
         <footer className="footer">
             <div className="container footer-container">
-                <div className="footer-info">
-                    <div className="footer-logo">ClipSense</div>
-                    <p>© 2026 ClipSense AI. Local first, Privacy foremost.</p>
+                <div className="footer-brand">
+                    <a href="/" className="logo-text">ClipSense</a>
+                    <p>© 2026 ClipSense AI. All rights reserved.</p>
                 </div>
                 <div className="footer-links">
-                    <a href="#">Privacy</a>
-                    <a href="#">Contact</a>
-                    <a href="#">Twitter</a>
+                    <a href="#features">Features</a>
+                    <a href="mailto:contact@clipsense.ai">Contact</a>
+                    <a href="#">Privacy Policy</a>
                 </div>
             </div>
         </footer>

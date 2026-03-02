@@ -1,15 +1,15 @@
-import React, { useState } from 'react';
+import React from 'react';
 
 const CTA = ({ onJoinBeta }) => {
     return (
         <section className="section cta">
             <div className="container">
                 <div className="cta-box">
-                    <p className="eyebrow">Early Access</p>
-                    <h2>Experience ClipSense Today.</h2>
-                    <p className="cta-subtext">Join 150+ creators finding moments instead of scrubbing for them.</p>
+                    <span className="eyebrow">Early Access</span>
+                    <h2>Ready to find<br />your best moments?</h2>
+                    <p className="cta-subtext">Join curators, editors, and filmmakers using AI to search their footage.</p>
                     <button className="btn btn-primary" onClick={onJoinBeta}>Join Free Beta</button>
-                    <p className="cta-footer-text">Built by creators, for creators. Local first. Privacy foremost.</p>
+                    <div className="cta-footer-text">Launching early 2026. 100% Privacy first.</div>
                 </div>
             </div>
         </section>

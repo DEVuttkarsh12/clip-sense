@@ -2,13 +2,14 @@ import React from 'react';
 
 const Problem = () => {
     return (
-        <section className="section problem">
+        <section className="section problem" id="problem">
             <div className="container">
-                <div className="problem-header-alt">
-                    <span className="eyebrow">The Resistance</span>
-                    <h2>Video Editing is broken.</h2>
-                    <p className="large-p">Traditional workflows force you to scrub, rewatch, and hunt. We believe searching should be as fast as thinking.</p>
-                </div>
+                <span className="eyebrow">The Challenge</span>
+                <h2>Scrubbing for hours?<br />Not anymore.</h2>
+                <p>
+                    Stop wasting time manually hunting for that one specific moment.
+                    Whether it's a spoken word or a visual action, finding it shouldn't be the hard part of editing.
+                </p>
             </div>
         </section>
     );

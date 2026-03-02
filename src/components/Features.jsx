@@ -1,45 +1,35 @@
 import React from 'react';
 
 const Features = () => {
-    const featureList = [
-        {
-            title: 'Semantic Intelligence',
-            desc: 'ClipSense builds a deep understanding of your video\'s content, allowing for complex queries that go beyond simple text matching.'
-        },
-        {
-            title: "Find spoken words instantly",
-            desc: "Search for any phrase or keyword. ClipSense identifies the exact millisecond it was spoken.",
-        },
-        {
-            title: "Jump to exact timestamps",
-            desc: "No more scrubbing. Click a search result and the video jumps instantly to the right moment.",
-        },
-        {
-            title: "Privacy first: no uploads",
-            desc: "Your videos never leave your browser. AI processing happens locally on your machine.",
-        },
-        {
-            title: "Visual Search (Coming Soon)",
-            desc: "Search for objects, people, or scenes visually. The ultimate creative navigation tool.",
-        },
-        {
-            title: 'Seamless Export',
-            desc: 'Found the clips? Export them directly into your favorite editor or as timestamped markers.'
-        },
-    ];
-
     return (
         <section className="section features" id="features">
             <div className="container">
-                <span className="eyebrow">Core Engine</span>
-                <h2>Built for the future.</h2>
+                <div className="features-header">
+                    <span className="eyebrow">Capabilities</span>
+                    <h2>Engineered for speed.</h2>
+                    <p>Powerful AI search that stays 100% on your device.</p>
+                </div>
                 <div className="features-grid">
-                    {featureList.map((feature, index) => (
-                        <div key={index} className="feature-card">
-                            <h3>{feature.title}</h3>
-                            <p>{feature.desc}</p>
-                        </div>
-                    ))}
+                    <div className="feature-card">
+                        <div className="feature-icon">🎙️</div>
+                        <h3>Semantic Speech Search</h3>
+                        <p>Find exact moments by searching what was spoken. No transcripts needed—just search.</p>
+                    </div>
+                    <div className="feature-card">
+                        <div className="feature-icon">👁️</div>
+                        <h3>Visual Moment Search</h3>
+                        <p>Search for visual elements like "the part where the car appears" or "shot of the waterfall."</p>
+                    </div>
+                    <div className="feature-card">
+                        <div className="feature-icon">🔒</div>
+                        <h3>Local-First Privacy</h3>
+                        <p>Your videos never leave your machine. Processing happens entirely in your browser.</p>
+                    </div>
+                    <div className="feature-card">
+                        <div className="feature-icon">⚡</div>
+                        <h3>Instant Timestamps</h3>
+                        <p>Jump to the exact frame you're looking for. No more manual scrubbing through footage.</p>
+                    </div>
                 </div>
             </div>
         </section>

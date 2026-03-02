@@ -46,24 +46,31 @@ const WaitlistPopup = ({ isOpen, onClose }) => {
     return (
         <div className="popup-overlay" onClick={onClose}>
             <div className="popup-content" onClick={(e) => e.stopPropagation()}>
-                <button className="popup-close" onClick={onClose}>×</button>
+                <button className="popup-close" onClick={onClose} aria-label="Close">
+                    <span className="close-icon"></span>
+                </button>
 
                 {status === 'success' ? (
                     <div className="success-message">
-                        <h3>You're on the list! 🚀</h3>
+                        <div className="success-icon">✨</div>
+                        <span className="eyebrow" style={{ color: 'var(--accent-cyan)' }}>Welcome Aboard</span>
+                        <h3>You're on the list!</h3>
                         <p>Thank you for your interest in ClipSense. We'll notify you as soon as early access is available.</p>
-                        <button className="btn btn-primary" onClick={onClose}>Got it</button>
+                        <button className="btn btn-primary" onClick={onClose} style={{ width: '100%' }}>Got it</button>
                     </div>
                 ) : status === 'already_joined' ? (
                     <div className="success-message">
-                        <h3>Welcome back! 💌</h3>
-                        <p>This email is already on our early access list. No further action is needed—we'll notify you as soon as we launch!</p>
-                        <button className="btn btn-primary" onClick={onClose}>Cool</button>
+                        <div className="success-icon">💌</div>
+                        <span className="eyebrow" style={{ color: 'var(--accent-cyan)' }}>Welcome Back</span>
+                        <h3>Already Joined!</h3>
+                        <p>This email is already on our early access list. No further action is needed—we'll notify you soon!</p>
+                        <button className="btn btn-primary" onClick={onClose} style={{ width: '100%' }}>Cool</button>
                     </div>
                 ) : (
                     <>
-                        <h3>Join the Early Access</h3>
-                        <p>Get notified the second we launch. No spam, ever.</p>
+                        <span className="eyebrow">Get Early Access</span>
+                        <h3>Join the Waitlist</h3>
+                        <p>Get notified the second we launch. Search your library with the power of local AI.</p>
 
                         <form className="popup-form" onSubmit={handleSubmit}>
                             {/* Web3Forms Access Key */}
@@ -78,9 +85,15 @@ const WaitlistPopup = ({ isOpen, onClose }) => {
                                 required
                                 disabled={status === 'submitting'}
                             />
-                            <button type="submit" className="btn btn-primary" disabled={status === 'submitting'}>
+                            <button type="submit" className="btn btn-primary" disabled={status === 'submitting'} style={{ width: '100%' }}>
                                 {status === 'submitting' ? 'Joining...' : 'Notify Me'}
                             </button>
+
+                            <div className="trust-badge">
+                                <span className="lock-icon">🔒</span>
+                                100% Privacy First. No spam, ever.
+                            </div>
+
                             {status === 'error' && (
                                 <p className="error-text">Something went wrong. Please try again.</p>
                             )}

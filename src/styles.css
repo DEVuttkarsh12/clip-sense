@@ -215,7 +215,7 @@ p {
 }
 
 .hero h1 {
-    font-size: clamp(3.5rem, 10vw, 6.5rem);
+    font-size: clamp(3.2rem, 10vw + 2vh, 6.5rem);
     margin-bottom: 32px;
     background: linear-gradient(to bottom, #fff 40%, rgba(255, 255, 255, 0.4));
     -webkit-background-clip: text;
@@ -261,6 +261,56 @@ p {
     100% {
         opacity: 1;
         transform: scale(1);
+    }
+}
+
+/* Large Screens */
+@media (min-width: 1440px) {
+    :root {
+        --container-width: 1400px;
+    }
+}
+
+/* Specific Mobile Refinements */
+@media (max-width: 768px) {
+    .section {
+        padding: 80px 0;
+    }
+
+    .hero {
+        padding-top: 140px;
+    }
+
+    .feature-card {
+        padding: 48px 32px;
+    }
+
+    .footer-container {
+        flex-direction: column;
+        gap: 40px;
+        text-align: center;
+    }
+}
+
+@media (max-width: 480px) {
+    .btn {
+        width: 100%;
+    }
+}
+
+/* Extreme Short Screens (Landscape Mobile) */
+@media (max-height: 500px) and (orientation: landscape) {
+    .hero {
+        padding-top: 100px;
+        padding-bottom: 60px;
+    }
+
+    .hero h1 {
+        font-size: 2.2rem;
+    }
+
+    .hero-mockup-wrapper {
+        display: none;
     }
 }
 
@@ -543,10 +593,14 @@ p {
     padding: 80px 48px 60px;
     max-width: 500px;
     width: 90%;
+    max-height: 90vh;
+    overflow-y: auto;
     border-radius: 40px;
     position: relative;
     text-align: center;
     box-shadow: 0 40px 100px rgba(0, 0, 0, 0.8);
+    scrollbar-width: thin;
+    scrollbar-color: rgba(255, 255, 255, 0.1) transparent;
 }
 
 .popup-close {
@@ -654,6 +708,6 @@ p {
     }
 
     .hero h1 {
-        font-size: 4rem;
+        font-size: clamp(2.8rem, 10vw + 2vh, 4.5rem);
     }
 }

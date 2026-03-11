@@ -5,30 +5,29 @@ const Features = () => {
         <section className="section features" id="features">
             <div className="container">
                 <div className="features-header">
-                    <span className="eyebrow">Capabilities</span>
-                    <h2>Engineered for speed.</h2>
-                    <p>Powerful AI search that stays 100% on your device.</p>
+                    <span className="eyebrow">Core Engine</span>
+                    <h2>Engineered for perfection.</h2>
                 </div>
+
                 <div className="features-grid">
-                    <div className="feature-card">
-                        <div className="feature-icon">🎙️</div>
-                        <h3>Semantic Speech Search</h3>
-                        <p>Find exact moments by searching what was spoken. No transcripts needed—just search.</p>
+                    <div className="feature-item">
+                        <h3>Intelligent Transcription</h3>
+                        <p>Leveraging state-of-the-art neural models to capture every nuance of speech with clinical accuracy.</p>
                     </div>
-                    <div className="feature-card">
-                        <div className="feature-icon">👁️</div>
-                        <h3>Visual Moment Search</h3>
-                        <p>Search for visual elements like "the part where the car appears" or "shot of the waterfall."</p>
+
+                    <div className="feature-item">
+                        <h3>Semantic Navigation</h3>
+                        <p>Search your audio library using meaning and context, not just keywords. Find thoughts, not just sounds.</p>
                     </div>
-                    <div className="feature-card">
-                        <div className="feature-icon">🔒</div>
-                        <h3>Local-First Privacy</h3>
-                        <p>Your videos never leave your machine. Processing happens entirely in your browser.</p>
+
+                    <div className="feature-item">
+                        <h3>Zero-Latency Privacy</h3>
+                        <p>Every byte of audio is processed locally on your machine. Your intellectual property never leaves your sight.</p>
                     </div>
-                    <div className="feature-card">
-                        <div className="feature-icon">⚡</div>
-                        <h3>Instant Timestamps</h3>
-                        <p>Jump to the exact frame you're looking for. No more manual scrubbing through footage.</p>
+
+                    <div className="feature-item">
+                        <h3>Script-First Workflow</h3>
+                        <p>Seamlessly export found moments directly into formatted scripts, marker lists, or research logs.</p>
                     </div>
                 </div>
             </div>

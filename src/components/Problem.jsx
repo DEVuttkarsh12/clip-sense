@@ -8,7 +8,7 @@ const Problem = () => {
                 <h2>Scrubbing for hours?<br />Not anymore.</h2>
                 <p>
                     Stop wasting time manually hunting for that one specific moment.
-                    Whether it's a spoken word or a visual action, finding it shouldn't be the hard part of editing.
+                    VidSift helps you bridge the gap between footage and finished script.
                 </p>
             </div>
         </section>

@@ -19,11 +19,6 @@ function App() {
 
   return (
     <div className="app">
-      <div className="bg-glows">
-        <div className="glow-1"></div>
-        <div className="glow-2"></div>
-      </div>
-
       <Navbar onJoinBeta={openWaitlist} />
 
       <main>

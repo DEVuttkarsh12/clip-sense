@@ -5,39 +5,19 @@ const Hero = ({ onJoinBeta }) => {
     return (
         <section className="hero">
             <HeroVisual />
-            <div className="container" style={{ position: 'relative', zIndex: 1 }}>
-                <div className="hero-content">
-                    <div className="hero-badge">
-                        <span className="badge-dot"></span>
-                        Now in Private Beta
-                    </div>
-                    <h1>Find any moment,<br />instantly.</h1>
-                    <p className="hero-subtitle">
-                        AI-powered visual and speech search for your videos.
-                        No uploads, no scrubbing, 100% private.
-                    </p>
 
-                    <div className="hero-cta-wrapper">
-                        <button className="btn btn-primary" onClick={onJoinBeta}>Join Free Beta</button>
-                        <span className="hero-subtext">Join 500+ creators and editors</span>
-                    </div>
+            <div className="hero-content">
+                <span className="eyebrow">Professional Workflow</span>
+                <h1>Sift through sound.<br />Script with precision.</h1>
+                <p className="hero-subtitle">
+                    A semantic AI workflow for curators and researchers to search audio by meaning and export polished scripts in seconds.
+                </p>
 
-                    <div className="hero-mockup-wrapper">
-                        <div className="hero-mockup">
-                            <div className="mock-search-bar">
-                                <span className="search-icon">🔍</span>
-                                <span className="search-text">"Find when I mentioned the project timeline"</span>
-                            </div>
-                            <div className="mock-video-frame">
-                                <div className="mock-play-btn"></div>
-                                <div className="mock-timestamp-bubbles">
-                                    <div className="bubble" style={{ left: '20%' }}></div>
-                                    <div className="bubble" style={{ left: '45%' }}></div>
-                                    <div className="bubble" style={{ left: '80%' }}></div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
+                <div className="hero-cta-wrapper">
+                    <button className="btn btn-primary" onClick={onJoinBeta}>
+                        Request Early Access
+                    </button>
+                    <div className="hero-subtext">Launching Early 2026 • 100% Local Privacy</div>
                 </div>
             </div>
         </section>

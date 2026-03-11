@@ -4,26 +4,26 @@ const HowItWorks = () => {
     return (
         <section className="section how-it-works" id="how-it-works">
             <div className="container">
-                <div className="features-header">
-                    <span className="eyebrow">The Process</span>
-                    <h2>Three steps to speed.</h2>
-                    <p>Get started with ClipSense in seconds. No complex setup required.</p>
-                </div>
+                <span className="eyebrow">The Process</span>
+                <h2>Three steps to clarity.</h2>
+
                 <div className="steps-container">
                     <div className="step-item">
-                        <span className="step-num">01</span>
-                        <h3>Drop your video</h3>
-                        <p>Simply drag and drop your footage into the dashboard. It stays 100% on your machine.</p>
+                        <span className="mono-label">01</span>
+                        <h3>Import Master</h3>
+                        <p>Drop your audio or video files. VidSift's local engine begins immediate semantic mapping.</p>
                     </div>
+
                     <div className="step-item">
-                        <span className="step-num">02</span>
-                        <h3>Neural Indexing</h3>
-                        <p>Our lighting-fast AI scans the audio and visual tracks to build a deep semantic index.</p>
+                        <span className="mono-label">02</span>
+                        <h3>Sift by Thought</h3>
+                        <p>Query your footage using natural language. "Find when they discuss the budget" or "Locate the peak of the debate."</p>
                     </div>
+
                     <div className="step-item">
-                        <span className="step-num">03</span>
-                        <h3>Search & Jump</h3>
-                        <p>Type what you're looking for and jump to the exact moment. Export markers or clips instantly.</p>
+                        <span className="mono-label">03</span>
+                        <h3>Export Script</h3>
+                        <p>Instantly generate professional scripts with perfect timecodes. High-fidelity results in seconds.</p>
                     </div>
                 </div>
             </div>

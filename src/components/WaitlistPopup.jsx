@@ -8,7 +8,7 @@ const WaitlistPopup = ({ isOpen, onClose }) => {
         const email = e.target.email.value.trim().toLowerCase();
 
         // 1. Check if they already joined on this browser
-        const joinedEmails = JSON.parse(localStorage.getItem('clipsense_waitlist_emails') || '[]');
+        const joinedEmails = JSON.parse(localStorage.getItem('vidsift_waitlist_emails') || '[]');
         if (joinedEmails.includes(email)) {
             setStatus('already_joined');
             return;
@@ -29,7 +29,7 @@ const WaitlistPopup = ({ isOpen, onClose }) => {
             if (data.success) {
                 // 2. Save to local storage on success
                 const updatedEmails = [...joinedEmails, email];
-                localStorage.setItem('clipsense_waitlist_emails', JSON.stringify(updatedEmails));
+                localStorage.setItem('vidsift_waitlist_emails', JSON.stringify(updatedEmails));
                 setStatus('success');
             } else {
                 console.error("Web3Forms Error:", data);
@@ -53,15 +53,15 @@ const WaitlistPopup = ({ isOpen, onClose }) => {
                 {status === 'success' ? (
                     <div className="success-message">
                         <div className="success-icon">✨</div>
-                        <span className="eyebrow" style={{ color: 'var(--accent-cyan)' }}>Welcome Aboard</span>
-                        <h3>You're on the list!</h3>
-                        <p>Thank you for your interest in ClipSense. We'll notify you as soon as early access is available.</p>
+                        <span className="eyebrow">Welcome Aboard</span>
+                        <h3>On the list.</h3>
+                        <p>We'll notify you as soon as early access is available.</p>
                         <button className="btn btn-primary" onClick={onClose} style={{ width: '100%' }}>Got it</button>
                     </div>
                 ) : status === 'already_joined' ? (
                     <div className="success-message">
                         <div className="success-icon">💌</div>
-                        <span className="eyebrow" style={{ color: 'var(--accent-cyan)' }}>Welcome Back</span>
+                        <span className="eyebrow">Welcome Back</span>
                         <h3>Already Joined!</h3>
                         <p>This email is already on our early access list. No further action is needed—we'll notify you soon!</p>
                         <button className="btn btn-primary" onClick={onClose} style={{ width: '100%' }}>Cool</button>
@@ -69,14 +69,14 @@ const WaitlistPopup = ({ isOpen, onClose }) => {
                 ) : (
                     <>
                         <span className="eyebrow">Get Early Access</span>
-                        <h3>Join the Waitlist</h3>
-                        <p>Get notified the second we launch. Search your library with the power of local AI.</p>
+                        <h3>Request Access</h3>
+                        <p>Enter your email to join the private waitlist.</p>
 
                         <form className="popup-form" onSubmit={handleSubmit}>
                             {/* Web3Forms Access Key */}
                             <input type="hidden" name="access_key" value="26af0562-6a36-44ba-90b6-6931d8676b8b" />
-                            <input type="hidden" name="subject" value="New ClipSense Waitlist Signup" />
-                            <input type="hidden" name="from_name" value="ClipSense Landing Page" />
+                            <input type="hidden" name="subject" value="New VidSift Waitlist Signup" />
+                            <input type="hidden" name="from_name" value="VidSift Landing Page" />
 
                             <input
                                 name="email"

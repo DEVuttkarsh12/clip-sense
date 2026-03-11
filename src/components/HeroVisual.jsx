@@ -1,126 +1,102 @@
-import React, { useRef, useMemo, useState } from 'react';
+import React, { useRef, useMemo } from 'react';
 import { Canvas, useFrame, useThree } from '@react-three/fiber';
-import { Float, PerspectiveCamera, Environment, Points, PointMaterial } from '@react-three/drei';
 import * as THREE from 'three';
 
-const NeuralNode = ({ initialPosition, color, size }) => {
+const WaterShader = () => {
     const meshRef = useRef();
-    const { viewport, mouse } = useThree();
+    const { viewport } = useThree();
 
-    // Track current and target positions for smooth physics
-    const targetPos = useRef(new THREE.Vector3(...initialPosition));
-    const currentPos = useRef(new THREE.Vector3(...initialPosition));
-    const tempPos = new THREE.Vector3();
+    const shaderArgs = useMemo(() => ({
+        uniforms: {
+            uTime: { value: 0 },
+            uColor1: { value: new THREE.Color('#0A0908') },
+            uColor2: { value: new THREE.Color('#D4A373') },
+            uResolution: { value: new THREE.Vector2(viewport.width, viewport.height) }
+        },
+        vertexShader: `
+            varying vec2 vUv;
+            void main() {
+                vUv = uv;
+                gl_Position = projectionMatrix * modelViewMatrix * vec4(position, 1.0);
+            }
+        `,
+        fragmentShader: `
+            uniform float uTime;
+            uniform vec3 uColor1;
+            uniform vec3 uColor2;
+            uniform vec2 uResolution;
+            varying vec2 vUv;
+
+            // Simplex 2D noise
+            vec3 permute(vec3 x) { return mod(((x*34.0)+1.0)*x, 289.0); }
+
+            float snoise(vec2 v){
+                const vec4 C = vec4(0.211324865405187, 0.366025403784439,
+                        -0.577350269189626, 0.024390243902439);
+                vec2 i  = floor(v + dot(v, C.yy) );
+                vec2 x0 = v -   i + dot(i, C.xx);
+                vec2 i1;
+                i1 = (x0.x > x0.y) ? vec2(1.0, 0.0) : vec2(0.0, 1.0);
+                vec4 x12 = x0.xyxy + C.xxzz;
+                x12.xy -= i1;
+                i = mod(i, 289.0);
+                vec3 p = permute( permute( i.y + vec3(0.0, i1.y, 1.0 ))
+                    + i.x + vec3(0.0, i1.x, 1.0 ));
+                vec3 m = max(0.5 - vec3(dot(x0,x0), dot(x12.xy,x12.xy),
+                    dot(x12.zw,x12.zw)), 0.0);
+                m = m*m ;
+                m = m*m ;
+                vec3 x = 2.0 * fract(p * C.www) - 1.0;
+                vec3 h = abs(x) - 0.5;
+                vec3 a0 = x - floor(x + 0.5);
+                vec3 g = a0 * vec3(x0.x,x12.xz) + h * vec3(x0.y,x12.yw);
+                vec3 l = 1.30 * (m * g);
+                return dot(l, vec3(1.0));
+            }
+
+            void main() {
+                vec2 st = vUv * 2.0 - 1.0;
+                float noise = snoise(st * 0.5 + uTime * 0.05);
+                
+                // Layered noise for "watery" effect
+                float finalNoise = snoise(st * 0.8 + noise * 0.5 + uTime * 0.05);
+                finalNoise += snoise(st * 1.5 - uTime * 0.03) * 0.2;
+                
+                // Favor Charcoal (uColor1) more heavily
+                float colorMix = clamp(finalNoise * 0.4 + 0.2, 0.0, 1.0);
+                vec3 color = mix(uColor1, uColor2, colorMix * 0.3); // Only use 30% of the gold
+                
+                // Add sharper "mercurial" highlights purely based on noise gradient
+                float highlight = smoothstep(0.48, 0.5, finalNoise);
+                color += uColor2 * highlight * 0.4;
+
+                gl_FragColor = vec4(color, 1.0);
+            }
+        `
+    }), [viewport]);
 
     useFrame((state) => {
-        const t = state.clock.getElapsedTime();
-
-        // 1. Update the "roaming" target position (gentle floating)
-        targetPos.current.x = initialPosition[0] + Math.sin(t * 0.5 + initialPosition[1]) * 0.5;
-        targetPos.current.y = initialPosition[1] + Math.cos(t * 0.5 + initialPosition[0]) * 0.5;
-
-        // 2. Calculate mouse repulsion
-        // Convert mouse normalized coordinates [-1, 1] to world coordinates approximately
-        const mouseX = (mouse.x * viewport.width) / 2;
-        const mouseY = (mouse.y * viewport.height) / 2;
-        const mousePos = new THREE.Vector3(mouseX, mouseY, 0);
-
-        const dist = currentPos.current.distanceTo(mousePos);
-        const repulsionRadius = 2.5;
-        const repulsionStrength = 1.2;
-
-        if (dist < repulsionRadius) {
-            // Direction away from mouse
-            const dir = new THREE.Vector3().subVectors(currentPos.current, mousePos).normalize();
-            const force = (1 - dist / repulsionRadius) * repulsionStrength;
-            tempPos.copy(targetPos.current).add(dir.multiplyScalar(force));
-        } else {
-            tempPos.copy(targetPos.current);
+        if (meshRef.current) {
+            meshRef.current.material.uniforms.uTime.value = state.clock.getElapsedTime();
         }
-
-        // 3. Smoothly interpolate current position toward the calculated temp position
-        currentPos.current.lerp(tempPos, 0.08);
-        meshRef.current.position.copy(currentPos.current);
-
-        // 4. Subtle individual pulsing
-        const scale = 1 + Math.sin(t * 1.5 + initialPosition[0]) * 0.1;
-        meshRef.current.scale.set(scale, scale, scale);
     });
 
     return (
         <mesh ref={meshRef}>
-            <sphereGeometry args={[size, 16, 16]} />
-            <meshStandardMaterial
-                emissive={color}
-                emissiveIntensity={2}
-                color={color}
-                transparent
-                opacity={0.6}
+            <planeGeometry args={[viewport.width, viewport.height]} />
+            <shaderMaterial
+                args={[shaderArgs]}
+                transparent={true}
             />
         </mesh>
-    );
-};
-
-const NeuralNetwork = ({ count = 60 }) => {
-    const groupRef = useRef();
-
-    const nodes = useMemo(() => {
-        const n = [];
-        for (let i = 0; i < count; i++) {
-            n.push({
-                initialPosition: [
-                    (Math.random() - 0.5) * 12,
-                    (Math.random() - 0.5) * 8,
-                    (Math.random() - 0.5) * 2 // Keep them relatively flat for better 2D mouse interaction feel
-                ],
-                color: Math.random() > 0.5 ? "#00E5FF" : "#7000FF",
-                size: 0.06 + Math.random() * 0.12
-            });
-        }
-        return n;
-    }, [count]);
-
-    useFrame((state) => {
-        const t = state.clock.getElapsedTime();
-        const mouse = state.mouse;
-
-        // Subtle overall system tilt based on mouse (keep it very subtle as nodes already react)
-        groupRef.current.rotation.y = THREE.MathUtils.lerp(groupRef.current.rotation.y, mouse.x * 0.05, 0.05);
-        groupRef.current.rotation.x = THREE.MathUtils.lerp(groupRef.current.rotation.x, -mouse.y * 0.05, 0.05);
-    });
-
-    return (
-        <group ref={groupRef}>
-            {nodes.map((node, i) => (
-                <NeuralNode key={i} {...node} />
-            ))}
-
-            {/* Background Star-like Particles */}
-            <Points limit={500}>
-                <PointMaterial transparent vertexColors size={0.02} sizeAttenuation={true} depthWrite={false} />
-                <bufferGeometry>
-                    <bufferAttribute
-                        attach="attributes-position"
-                        count={150}
-                        array={new Float32Array(450).map(() => (Math.random() - 0.5) * 25)}
-                        itemSize={3}
-                    />
-                </bufferGeometry>
-            </Points>
-        </group>
     );
 };
 
 const HeroVisual = () => {
     return (
         <div className="hero-visual-container">
-            <Canvas dpr={[1, 2]}>
-                <PerspectiveCamera makeDefault position={[0, 0, 8]} fov={40} />
-                <NeuralNetwork />
-                <Environment preset="night" />
-                <ambientLight intensity={0.2} />
-                <pointLight position={[10, 10, 10]} intensity={1.5} color="#7000FF" />
-                <pointLight position={[-10, -10, -10]} intensity={0.8} color="#00E5FF" />
+            <Canvas camera={{ position: [0, 0, 1] }}>
+                <WaterShader />
             </Canvas>
         </div>
     );

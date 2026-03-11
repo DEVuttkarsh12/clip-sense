@@ -4,30 +4,30 @@ const Pricing = () => {
     return (
         <section className="section pricing" id="pricing">
             <div className="container">
-                <div className="features-header">
-                    <span className="eyebrow">Pricing</span>
-                    <h2>A plan for every creator.</h2>
-                    <p>Start for free. Upgrade for more power.</p>
-                </div>
+                <span className="eyebrow">Sponsorship</span>
+                <h2>Access the future.</h2>
+
                 <div className="pricing-grid">
-                    <div className="pricing-card">
-                        <span className="eyebrow">The Starter</span>
-                        <div className="price">$0<span>/mo</span></div>
+                    <div className="pricing-plan">
+                        <span className="mono-label">The Starter</span>
+                        <div className="price">$0</div>
                         <ul className="pricing-features">
-                            <li>5 Hours of Video Processing</li>
-                            <li>Semantic Speech Search</li>
-                            <li>100% Local Processing</li>
+                            <li>5 Hours of Audio Processing</li>
+                            <li>Instant Transcript Search</li>
+                            <li>100% Local Privacy</li>
                         </ul>
                     </div>
-                    <div className="pricing-card pro">
-                        <span className="eyebrow">The Pro Bundle</span>
-                        <div className="price">$19<span>/mo</span></div>
+
+                    <div className="pricing-plan">
+                        <span className="mono-label">The Pro</span>
+                        <div className="price">$19</div>
                         <ul className="pricing-features">
-                            <li>Unlimited Processing</li>
-                            <li>Visual Search (AI Vision)</li>
+                            <li>Unlimited Audio Processing</li>
+                            <li>Multi-Speaker Detection</li>
                             <li>Batch Export Markers</li>
                             <li>Priority Support</li>
                         </ul>
+                        <button className="btn btn-primary" style={{ marginTop: '20px' }}>Select Pro</button>
                     </div>
                 </div>
             </div>
